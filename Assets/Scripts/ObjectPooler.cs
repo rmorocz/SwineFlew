@@ -21,7 +21,7 @@ public class ObjectPooler : MonoBehaviour {
 			pooledObjects.Add (obj);
 		}
 	}
-	
+
 	public GameObject GetPooledObject()
 	{
 		for (int i = 0; i < pooledObjects.Count; i++) 
@@ -31,7 +31,7 @@ public class ObjectPooler : MonoBehaviour {
 				return pooledObjects [i];
 			}
 		}
-			
+
 		if (willGrow)			//If the list is not long enough and the specific list of objects is allowed to grow
 		{
 			GameObject obj = (GameObject) Instantiate (pooledObject);
