@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundObjectGenerator : MonoBehaviour {
+public class ObjectGenerator : MonoBehaviour {
 
 	public ObjectPooler[] myObjectPooler;
 	private int objectTypes;
@@ -14,9 +14,15 @@ public class BackgroundObjectGenerator : MonoBehaviour {
 	private float spawnTimeCounter;
 	private bool spawned;
 
+	//POSITION VARIABLES
+	public float spawnHeightMax;
+	public float spawnHeightMin;
+	private float spawnHeight;
+
 	void Start () 
 	{
 		spawnTimeCounter = Random.Range (spawnTimeMin, spawnTimeMax);
+		spawnHeight = Random.Range (spawnHeightMin, spawnHeightMax);
 		spawned = false;
 
 		objectTypes = myObjectPooler.Length;
@@ -24,12 +30,11 @@ public class BackgroundObjectGenerator : MonoBehaviour {
 
 	void Update () 
 	{
-		if (spawned) 
-		{
+		if (spawned) {
 			spawnTimeCounter = Random.Range (spawnTimeMin, spawnTimeMax);
+			spawnHeight = Random.Range (spawnHeightMin, spawnHeightMax);
 			spawned = false;
 		}
-
 		objectSpawn ();
 	}
 
@@ -37,13 +42,14 @@ public class BackgroundObjectGenerator : MonoBehaviour {
 	{
 		if (spawnTimeCounter <= 0) 
 		{
+
 			objectSelected = Random.Range (0, objectTypes);
 
 			GameObject obj = myObjectPooler[objectSelected].GetPooledObject ();
 			if (obj == null) {
 				return;
 			}
-			obj.transform.position = transform.position;
+			obj.transform.position = new Vector2 (transform.position.x, spawnHeight);
 			obj.transform.rotation = transform.rotation;
 			obj.SetActive (true);
 			spawned = true;
