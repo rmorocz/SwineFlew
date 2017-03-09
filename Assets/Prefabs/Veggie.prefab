@@ -107,6 +107,9 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 324aca14c6adbf745933620f253bd586, type: 3}
   - {fileID: 21300004, guid: 324aca14c6adbf745933620f253bd586, type: 3}
   selectedSprite: 0
+  carrotRate: 50
+  beetRate: 40
+  pepperRate: 10
 --- !u!114 &114822614071831200
 MonoBehaviour:
   m_ObjectHideFlags: 1
