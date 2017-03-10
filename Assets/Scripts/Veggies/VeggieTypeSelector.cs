@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class VeggieTypeSelector : MonoBehaviour {
 
-	//SPRITE VARIABLES
+	[Header("Veggie Types")]
+	public Sprite[] veggieSprites;
+	public int selectedVeggie;
 	private SpriteRenderer mySpriteRenderer;
-	public Sprite[] sprites;
-
-	public int selectedSprite;
-
+	private int randomSelection;
 
 	[Header("Rate of Appearance")]
 	public int carrotRate;
@@ -17,14 +16,9 @@ public class VeggieTypeSelector : MonoBehaviour {
 	public int pepperRate;
 
 
-	private int spriteTypes;
-
-	private int randomSelection;
-
 	void Awake () 
 	{
 		mySpriteRenderer = gameObject.GetComponent <SpriteRenderer> ();
-		spriteTypes = sprites.Length;
 	}
 
 	void OnEnable() 
@@ -34,22 +28,22 @@ public class VeggieTypeSelector : MonoBehaviour {
 		//VEGGIE SELECTION
 		if (randomSelection <= carrotRate) 
 		{
-			selectedSprite = 0;
+			selectedVeggie = 0;
 		} 
 		else if (randomSelection > carrotRate && randomSelection <= (beetRate + carrotRate)) 
 		{
-			selectedSprite = 1;
+			selectedVeggie = 1;
 		} 
 		else if (randomSelection > (beetRate + carrotRate))
 		{
-			selectedSprite = 2;
+			selectedVeggie = 2;
 		}
 
-		mySpriteRenderer.sprite = sprites [selectedSprite];
+		mySpriteRenderer.sprite = veggieSprites [selectedVeggie];
 	}
 
-	public int getSpriteType ()
+	public int getVeggieType ()
 	{
-		return selectedSprite;
+		return selectedVeggie;
 	}
 }

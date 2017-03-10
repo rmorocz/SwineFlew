@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114488962130530950}
   - component: {fileID: 114822614071831200}
   - component: {fileID: 114700847882878332}
+  - component: {fileID: 114193770392408204}
   m_Layer: 0
   m_Name: Veggie
   m_TagString: Untagged
@@ -79,6 +80,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.625}
   serializedVersion: 2
   m_Size: {x: 0.5833333, y: 1.25}
+--- !u!114 &114193770392408204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1009584974349388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500053db13d812045a76fdd013da7f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedVeggie: 0
+  myPlayerJump: {fileID: 0}
 --- !u!114 &114488962130530950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,11 +116,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabd487c26edf20468961ee4a8c0041d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
+  veggieSprites:
   - {fileID: 21300000, guid: 324aca14c6adbf745933620f253bd586, type: 3}
   - {fileID: 21300002, guid: 324aca14c6adbf745933620f253bd586, type: 3}
   - {fileID: 21300004, guid: 324aca14c6adbf745933620f253bd586, type: 3}
-  selectedSprite: 0
+  selectedVeggie: 0
   carrotRate: 50
   beetRate: 40
   pepperRate: 10

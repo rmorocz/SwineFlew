@@ -29,6 +29,9 @@ public class PlayerJump : MonoBehaviour {
 	//FLYING VARIABLES
 	public bool canFly;
 	public float flyForce;
+	public float flyingTime;
+	private float flyingTimeCounter;
+
 
 	// START FUNCTION: called when the game starts
 	void Start () 
@@ -109,6 +112,14 @@ public class PlayerJump : MonoBehaviour {
 			myRigidbody.AddForce (new Vector2 (0, flyForce));
 			Debug.Log( "FixedUpdate realTime: "+Time.realtimeSinceStartup);
 		}
+
+		if (flyingTimeCounter <= 0) 
+		{
+			canFly = false;
+		}
+
+		flyingTimeCounter -= Time.deltaTime;
+
 	}
 
 
@@ -171,5 +182,14 @@ public class PlayerJump : MonoBehaviour {
 	public bool getRunningStatus ()
 	{
 		return running;
+	}
+
+
+
+	// ACTIVATE FLYING POWER UP FROM OTHER SCRIPTS
+	public void setPowerUp()
+	{
+		canFly = true;
+		flyingTimeCounter = flyingTime;
 	}
 }
