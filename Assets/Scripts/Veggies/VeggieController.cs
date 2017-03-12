@@ -4,41 +4,57 @@ using UnityEngine;
 
 public class VeggieController : MonoBehaviour {
 
-	public int selectedVeggie;
+	private int selectedVeggie;
 	private VeggieTypeSelector myVeggieTypeSelector;
 	private PlayerJump myPlayerJump;
+	private VeggieParticleController particleController;
+	private SpriteRenderer mySpriteRenderer;
+	private bool isEaten;
 
-	// Use this for initialization
-	void Start () {
+
+	void Start () 
+	{
 		myVeggieTypeSelector = gameObject.GetComponent<VeggieTypeSelector> ();
 		myPlayerJump = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerJump> ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+		particleController = this.gameObject.GetComponentInChildren<VeggieParticleController> ();
+
+		isEaten = false;
+
+		mySpriteRenderer = this.gameObject.GetComponent<SpriteRenderer> ();
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (other.gameObject.name == "Player") 
+		if (!isEaten) 
 		{
-			//theScoreManager.AddVeggieScore (scoreToGive);
-
-
-
-			selectedVeggie = myVeggieTypeSelector.getVeggieType();
-
-			if (selectedVeggie == 2) 
+			if (other.gameObject.name == "Player") 
 			{
-				myPlayerJump.setPowerUp ();
+				isEaten = true;
+				selectedVeggie = myVeggieTypeSelector.getVeggieType ();
+				//theScoreManager.AddVeggieScore (scoreToGive);
+
+				if (selectedVeggie == 2) 
+				{
+					myPlayerJump.setPowerUp ();
+				}
+
+				//ACTIVATE SOUND EFFECT-------------------------------------------------------------
+
+				//ACTIVATE PARTICLE EFFECT----------------------------------------------------------
+				particleController.SetSelectedVeggie (selectedVeggie);
+				particleController.ActivateVeggieParticle ();
+
+				//DEACTIVATE SPRITE AS EATEN STATE--------------------------------------------------
+				mySpriteRenderer.enabled = false;
+
 			}
-			//Sound Effect included here
-
-			//Particle Effect dependent on the selected veggie
-			//Object.Instantiate (myPoof, gameObject.transform.position, poofRotation);
-
-			gameObject.SetActive (false);
 		}
+	}
+
+	public void resetVeggie ()
+	{
+		isEaten = false;
+		mySpriteRenderer.enabled = true;
 	}
 }

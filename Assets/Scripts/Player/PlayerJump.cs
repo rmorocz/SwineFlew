@@ -110,7 +110,6 @@ public class PlayerJump : MonoBehaviour {
 		{
 			//myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, jumpForce);
 			myRigidbody.AddForce (new Vector2 (0, flyForce));
-			Debug.Log( "FixedUpdate realTime: "+Time.realtimeSinceStartup);
 		}
 
 		if (flyingTimeCounter <= 0) 
