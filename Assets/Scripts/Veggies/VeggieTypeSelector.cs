@@ -6,7 +6,7 @@ public class VeggieTypeSelector : MonoBehaviour {
 
 	[Header("Veggie Types")]
 	public Sprite[] veggieSprites;
-	public int selectedVeggie;
+	private int selectedVeggie;
 	private SpriteRenderer mySpriteRenderer;
 	private int randomSelection;
 
